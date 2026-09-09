@@ -564,23 +564,29 @@ footer a {
         grid-template-columns: 1fr;
     }
 
-    /* Contenedor y Video Adaptable */
-    .video-contenedor {
+    /* Tarjeta envolvente del Video  */
+    .seccion-video-tarjeta {
         width: 100%;
-        max-width: 850px;
-        margin: 20px auto 40px auto;
-        aspect-ratio: 16 / 9;
-        background: #000000;
+        background: #7909838b;
+        padding: 25px;
         border-radius: 16px;
-        overflow: hidden;
         border: 1px solid var(--color-borde);
-        box-shadow: var(--sombra-suave);
+        margin-bottom: 40px;
     }
 
-    .video-contenedor video {
+    /* Contenedor del reproductor 16:9 al 100% del ancho */
+    .video-contenedor {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #000000;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .video-contenedor iframe {
         width: 100%;
         height: 100%;
+        border: none;
         display: block;
-        object-fit: contain;
     }
 }
