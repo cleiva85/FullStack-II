@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Comercio - Registro de Clientes</title>
+    <title>C & D Distribuira Mayorista - Registro de Clientes</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -11,10 +11,10 @@
     <header>
         <div class="nav-container">
             <a href="ProyectoComercio.html" class="marca">
-                 Proyecto Comercio
+                C & D Distribuira Mayorista
             </a>
-            <nav>
-                <a href="ProyectoComercio.html">Volver al Catálogo</a>
+            <nav>   
+                <a href="index.html">Volver al Catálogo</a>
                 <a href="Registro.html" class="activo">Crear Cuenta</a>
             </nav>
         </div>
@@ -63,7 +63,7 @@
                     <span class="mensaje_error" id="errorEmail"></span>
                 </div>
 
-                <!-- Teléfono -->
+                <!-- Telefono -->
                 <div class="campo">
                     <label for="telefono">Teléfono:</label>
                     <input type="tel" id="telefono" name="telefono" placeholder="+56912345678" autocomplete="tel" required>
@@ -71,7 +71,7 @@
                     <span class="mensaje_error" id="errorTelefono"></span>
                 </div>
 
-                <!-- Dirección -->
+                <!-- Direccion -->
                 <div class="campo">
                     <label for="direccion">Dirección de Despacho:</label>
                     <input type="text" id="direccion" name="direccion" placeholder="Calle, número, departamento" autocomplete="street-address" required>
@@ -107,7 +107,7 @@
                     </div>
                 </div>
 
-                
+              
 
                 <button type="submit" id="btnGuardar" class="btn-enviar">Guardar y Registrar Cliente</button>
                 
@@ -120,111 +120,143 @@
         <p>Proyecto Comercio - Registro de Clientes | Duoc UC</p>
     </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const form = document.getElementById("formularioCliente");
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("formularioCliente");
 
-            form.addEventListener("submit", (e) => {
-                e.preventDefault();
-                limpiarErrores();
+        // Funciones dedicadas para consola y feedback visual
+        function funcionError(campo, mensaje, idSpan) {
+            console.log(`-- Función error: [${campo}] --`);
+            console.error(`Error en ${campo}: ${mensaje}`);
 
-                let esValido = true;
+            const span = document.getElementById(idSpan);
+            if (span) span.textContent = mensaje;
+        }
 
-                const rut = document.getElementById("rut");
-                const nombre = document.getElementById("nombre");
-                const apellido = document.getElementById("apellido");
-                const usuario = document.getElementById("usuario");
-                const email = document.getElementById("email");
-                const telefono = document.getElementById("telefono");
-                const direccion = document.getElementById("direccion");
-                const comuna = document.getElementById("comuna");
-                const password = document.getElementById("password");
-                const confirmPassword = document.getElementById("confirmPassword");
-                const terminos = document.getElementById("terminos");
-                const alerta = document.getElementById("mensajeExito");
+        function funcionCorrecto(campo, valor) {
+            console.log(`-- Función validación: [${campo}] --`);
+            console.log(`%c ${campo} ingresado correctamente: ${valor}`, "color: #28a745; font-weight: bold;");
+        }
 
-                // RUT
-                const regexRut = /^[0-9]{7,8}-[0-9kK]{1}$/;
-                if (!regexRut.test(rut.value.trim())) {
-                    mostrarError("errorRut", "Ingresa un RUT válido sin puntos y con guion (ej: 12345678-9).");
-                    esValido = false;
-                }
+        function funcionExito(datos) {
+            console.log("-- Función éxito: registro completado --");
+            console.table(datos);
 
-                // Nombre y Apellido
-                if (nombre.value.trim().length < 2) {
-                    mostrarError("errorNombre", "Ingresa un nombre válido.");
-                    esValido = false;
-                }
-                if (apellido.value.trim().length < 2) {
-                    mostrarError("errorApellido", "Ingresa un apellido válido.");
-                    esValido = false;
-                }
+            const alerta = document.getElementById("mensajeExito");
+            alerta.textContent = `¡Registro completado con éxito! Bienvenido(a) ${datos.Nombre}.`;
+            alerta.style.display = "block";
+            form.reset();
+        }
 
-                // Usuario
-                if (usuario.value.trim().length < 4) {
-                    mostrarError("errorUsuario", "El usuario debe tener al menos 4 caracteres.");
-                    esValido = false;
-                }
+        function limpiarErrores() {
+            document.querySelectorAll(".mensaje_error").forEach((el) => (el.textContent = ""));
+            const alerta = document.getElementById("mensajeExito");
+            alerta.textContent = "";
+            alerta.style.display = "none";
+        }
 
-                // Correo
-                const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!regexEmail.test(email.value.trim())) {
-                    mostrarError("errorEmail", "Ingresa un correo válido (ej: cliente@email.cl).");
-                    esValido = false;
-                }
+        // Listener del submit
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            limpiarErrores();
 
-                // Teléfono
-                const regexTel = /^(\+?56)?(\s?)(0?9)(\s?)[0-9]{8}$|^[0-9]{9}$/;
-                if (!regexTel.test(telefono.value.trim())) {
-                    mostrarError("errorTelefono", "Ingresa un teléfono de 9 números o con formato +569.");
-                    esValido = false;
-                }
+            let esValido = true;
 
-                // Dirección y Comuna
-                if (direccion.value.trim().length < 5) {
-                    mostrarError("errorDireccion", "La dirección de entrega es requerida.");
-                    esValido = false;
-                }
-                if (comuna.value.trim() === "") {
-                    mostrarError("errorComuna", "Selecciona o escribe una comuna.");
-                    esValido = false;
-                }
+            const rut = document.getElementById("rut");
+            const nombre = document.getElementById("nombre");
+            const apellido = document.getElementById("apellido");
+            const usuario = document.getElementById("usuario");
+            const email = document.getElementById("email");
+            const telefono = document.getElementById("telefono");
+            const direccion = document.getElementById("direccion");
+            const comuna = document.getElementById("comuna");
+            const password = document.getElementById("password");
+            const confirmPassword = document.getElementById("confirmPassword");
 
-                // Contraseña
-                if (password.value.length < 6) {
-                    mostrarError("errorPassword", "La contraseña debe tener mínimo 6 caracteres.");
-                    esValido = false;
-                }
-                if (password.value !== confirmPassword.value || confirmPassword.value === "") {
-                    mostrarError("errorConfirmPassword", "Las contraseñas no coinciden.");
-                    esValido = false;
-                }
-
-                // Términos
-                if (!terminos.checked) {
-                    mostrarError("errorTerminos", "Debes aceptar los términos y condiciones.");
-                    esValido = false;
-                }
-
-                if (esValido) {
-                    alerta.textContent = `¡Registro completado con éxito! Bienvenido(a) ${nombre.value} ${apellido.value} a Proyecto Comercio.`;
-                    alerta.style.display = "block";
-                    form.reset();
-                }
-            });
-
-            function mostrarError(id, msg) {
-                const span = document.getElementById(id);
-                if (span) span.textContent = msg;
+            // RUT
+            const regexRut = /^[0-9]{7,8}-[0-9kK]{1}$/;
+            if (!regexRut.test(rut.value.trim())) {
+                funcionError("RUT Cliente", "Ingresa un RUT válido sin puntos y con guion (ej: 12345678-9).", "errorRut");
+                esValido = false;
+            } else {
+                funcionCorrecto("RUT Cliente", rut.value.trim());
             }
 
-            function limpiarErrores() {
-                document.querySelectorAll(".mensaje_error").forEach((el) => (el.textContent = ""));
-                const alerta = document.getElementById("mensajeExito");
-                alerta.textContent = "";
-                alerta.style.display = "none";
+            // Nombre
+            if (nombre.value.trim().length < 2) {
+                funcionError("Nombre", "Ingresa un nombre válido (mínimo 2 caracteres).", "errorNombre");
+                esValido = false;
+            } else {
+                funcionCorrecto("Nombre", nombre.value.trim());
             }
+
+            // Apellido
+            if (apellido.value.trim().length < 2) {
+                funcionError("Apellido", "Ingresa un apellido válido (mínimo 2 caracteres).", "errorApellido");
+                esValido = false;
+            } else {
+                funcionCorrecto("Apellido", apellido.value.trim());
+            }
+
+            // Usuario
+            if (usuario.value.trim().length < 4) {
+                funcionError("Usuario", "El usuario debe tener al menos 4 caracteres.", "errorUsuario");
+                esValido = false;
+            } else {
+                funcionCorrecto("Usuario", usuario.value.trim());
+            }
+
+            // Correo
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regexEmail.test(email.value.trim())) {
+                funcionError("Correo Electrónico", "Ingresa un correo válido (ej: cliente@email.cl).", "errorEmail");
+                esValido = false;
+            } else {
+                funcionCorrecto("Correo Electrónico", email.value.trim());
+            }
+
+            // Teléfono
+            const regexTel = /^(\+?56)?(\s?)(0?9)(\s?)[0-9]{8}$|^[0-9]{9}$/;
+            if (!regexTel.test(telefono.value.trim())) {
+                funcionError("Teléfono", "Ingresa un teléfono de 9 números o con formato +569.", "errorTelefono");
+                esValido = false;
+            } else {
+                funcionCorrecto("Teléfono", telefono.value.trim());
+            }
+
+            // Dirección
+            if (direccion.value.trim().length < 5) {
+                funcionError("Dirección", "La dirección de entrega es requerida (mínimo 5 caracteres).", "errorDireccion");
+                esValido = false;
+            } else {
+                funcionCorrecto("Dirección", direccion.value.trim());
+            }
+
+            // Comuna
+            if (comuna.value.trim() === "") {
+                funcionError("Comuna", "Selecciona o escribe una comuna.", "errorComuna");
+                esValido = false;
+            } else {
+                funcionCorrecto("Comuna", comuna.value.trim());
+            }
+
+            // Contraseñas
+            let passOk = true;
+            if (password.value.length < 6) {
+                funcionError("Contraseña", "La contraseña debe tener mínimo 6 caracteres.", "errorPassword");
+                esValido = false;
+                passOk = false;
+            }
+            if (password.value !== confirmPassword.value || confirmPassword.value === "") {
+                funcionError("Confirmar Contraseña", "Las contraseñas no coinciden.", "errorConfirmPassword");
+                esValido = false;
+                passOk = false;
+            }
+            if (passOk) {
+                funcionCorrecto("Contraseña", "****** (válida)");
+            }
+
+
         });
-    </script>
-</body>
-</html>
+    });
+</script>
