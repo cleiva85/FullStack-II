@@ -6,11 +6,7 @@ Tienda online migrada de HTML/JS a **React + Bootstrap**, con **pruebas unitaria
 
 ```
 Proyecto_Comercio/
-├── backend/            API REST en Node.js (sin dependencias externas)
-│   ├── server.js       registro, login (token), sesión, regiones, pedidos
-│   ├── lib/            validadores (RUT, correo, teléfono) y catálogo base
-│   ├── datos/          regiones y comunas de Chile (16 regiones, 346 comunas)
-│   └── tests/          pruebas de la API (node --test)
+
 ├── frontend/           aplicación React (Vite)
 │   ├── src/
 │   │   ├── components/ comunes/ · tienda/ · admin/   (componentes reutilizables)
@@ -34,18 +30,12 @@ Requiere **Node.js 18 o superior** y **Google Chrome** (para las pruebas).
 cd frontend
 npm install
 
-# 2) Terminal 1: backend (API en http://localhost:3000)
-cd backend
-npm start
-
-# 3) Terminal 2: frontend (abre http://localhost:5173)
+# 2) Terminal 2: frontend (abre http://localhost:5173)
 cd frontend
 npm run dev
 ```
 
 Desde la carpeta raíz también funcionan `npm run instalar`, `npm run backend` y `npm run dev`.
-
-**Cuenta de administrador de demostración:** usuario `admin`, contraseña `admin123` (se crea sola la primera vez que corre el backend).
 
 ## Pruebas
 
@@ -55,10 +45,7 @@ npm test            # corre las 94 pruebas una vez y genera la cobertura
 npm run test:watch  # deja Karma abierto y vuelve a correr al guardar
 ```
 
-- Resultado de cobertura: `frontend/coverage/html/index.html` (abrir en el navegador) y resumen en `frontend/coverage/resumen.txt`.
-- Pruebas del backend: `cd backend && npm test`.
-- Si Karma no encuentra Chrome (por ejemplo, si solo tienes Edge), indica la ruta antes de correr las pruebas.
-  En PowerShell: `$env:CHROME_BIN="C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"; npm test`
+
 
 ## Vistas (según el diagrama de navegación de la pauta)
 
