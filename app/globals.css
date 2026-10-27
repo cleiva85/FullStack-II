@@ -1,0 +1,103 @@
+/* =========================================================
+   Estilos propios sobre Bootstrap 5.
+   Identidad de C & D: fondo negro, barra ciruela, morado como color
+   de marca y tarjetas blancas (se mantiene la de la Evaluación 1).
+   ========================================================= */
+:root {
+  --marca: #6c5ce7;
+  --marca-oscura: #5443d6;
+  --marca-clara: #a29bfe;
+  --ciruela: #36073a;
+  --precio: #00a884;
+  --fondo: #000;
+  --bs-font-sans-serif: var(--font-poppins), 'Poppins', Helvetica, Arial, sans-serif;
+  --bs-link-color: var(--marca);
+  --bs-link-color-rgb: 108, 92, 231;
+}
+
+/* ---------- Tienda ---------- */
+.tienda { background: var(--fondo); color: #fff; }
+.tienda .card, .tienda .table, .tienda .alert-light, .tienda .dropdown-menu { color: #2d3436; }
+.texto-suave { color: #c8c3e8; }
+.enlace-claro { color: var(--marca-clara); }
+.enlace-claro:hover { color: #fff; }
+.tienda .breadcrumb-item a { color: var(--marca-clara); }
+.tienda .breadcrumb-item.active, .tienda .breadcrumb-item + .breadcrumb-item::before { color: #c8c3e8; }
+
+.encabezado { background: var(--ciruela); border-bottom: 1px solid #222; }
+.encabezado .marca { color: var(--marca-clara); font-weight: 700; }
+.encabezado .nav-link { color: rgba(255, 255, 255, .8); }
+.encabezado .nav-link.active, .encabezado .nav-link:hover { color: #fff; }
+.encabezado .dropdown-menu { max-height: 70vh; overflow-y: auto; }
+
+.titulo-seccion {
+  font-size: 1.6rem; font-weight: 700; margin-bottom: 1.25rem;
+  padding-left: .75rem; border-left: 4px solid var(--marca);
+}
+
+.btn-marca { background: var(--marca); border-color: var(--marca); color: #fff; }
+.btn-marca:hover, .btn-marca:focus-visible { background: var(--marca-oscura); border-color: var(--marca-oscura); color: #fff; }
+
+/* Tarjetas de producto */
+.tarjeta-producto { border: 0; border-radius: 16px; overflow: hidden; }
+.tarjeta-producto .card-img-top { height: 170px; object-fit: contain; background: #fff; padding: 12px; }
+.badge-categoria { background: #eeebff; color: var(--marca); font-weight: 600; }
+.selector-cantidad { max-width: 150px; margin: 0 auto; }
+.selector-cantidad input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.precio-actual { color: var(--precio); font-weight: 700; font-size: 1.15rem; }
+.precio-anterior { color: #888; text-decoration: line-through; font-size: .9rem; }
+.precio-grande .precio-actual { font-size: 1.8rem; }
+.tienda .precio-grande .precio-anterior { color: #c8c3e8; }
+.mensaje-vacio { color: #c8c3e8 !important; }
+.detalle-img { max-height: 420px; object-fit: contain; }
+
+.tarjeta-categoria { border: 0; border-radius: 14px; overflow: hidden; color: #2d3436; }
+.tarjeta-categoria img { height: 110px; object-fit: contain; background: #fff; padding: 10px; }
+.tarjeta-categoria:hover { outline: 3px solid var(--marca-clara); }
+
+.panel-oscuro { background: #120a1d; border: 1px solid #2c2140; border-radius: 16px; padding: 1.5rem; }
+.blog-img { height: 220px; object-fit: cover; }
+.lectura { max-width: 68ch; line-height: 1.75; }
+
+/* Carrusel */
+.carrusel { height: clamp(260px, 42vw, 420px); background: #111; }
+.carrusel-img { width: 100%; height: 100%; object-fit: cover; opacity: .55; }
+.carrusel-texto { position: absolute; inset: auto 0 0 0; padding: clamp(1.25rem, 4vw, 3rem); max-width: 720px; }
+.carrusel-control {
+  position: absolute; top: 50%; transform: translateY(-50%); border: 0; width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(0, 0, 0, .45); color: #fff; font-size: 1.6rem; line-height: 1;
+}
+.carrusel-control.izq { left: 12px; }
+.carrusel-control.der { right: 12px; }
+.carrusel-indicadores { position: absolute; right: 16px; bottom: 16px; display: flex; gap: 6px; }
+.carrusel-indicadores button { width: 28px; height: 4px; border: 0; background: rgba(255, 255, 255, .45); }
+.carrusel-indicadores button.activo { background: #fff; }
+
+.miniatura { width: 40px; height: 40px; object-fit: contain; background: #fff; border-radius: 6px; border: 1px solid #eee; }
+.totales { display: grid; grid-template-columns: 1fr auto; gap: .25rem 1.5rem; max-width: 320px; margin-left: auto; }
+.totales dd { margin: 0; text-align: right; }
+
+.pie { background: #0d0612; border-top: 1px solid #222; color: #fff; }
+.pie a { color: var(--marca-clara); }
+
+.filtros .form-control, .filtros .form-select { border-radius: 10px; }
+
+/* ---------- Panel de administración ---------- */
+.admin { background: #f5f4fb; }
+.admin-barra { background: var(--ciruela); }
+.admin-lateral { background: #fff; border-right: 1px solid #e5e3f0; min-height: calc(100vh - 56px); }
+.admin-lateral .nav-link { color: #333; }
+.admin-lateral .nav-link.active { background: var(--marca); }
+.acceso-admin { color: #2d3436; }
+.acceso-admin:hover { border-color: var(--marca); }
+.bg-admin { background: var(--marca) !important; }
+
+/* ---------- Foco visible y movimiento reducido ---------- */
+:focus-visible { outline: 3px solid var(--marca-clara); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* ---------- Impresión de boletas ---------- */
+@media print {
+  .encabezado, .pie, .no-imprimir, .admin-lateral, .admin-barra { display: none !important; }
+  .tienda { background: #fff; color: #000; }
+}
