@@ -1,5 +1,5 @@
-import { useCarrito } from '../context/CarritoContext.jsx';
-import { useAviso } from '../context/AvisoContext.jsx';
+import { useCarrito } from '../context/CarritoContext.tsx';
+import { useAviso } from '../context/AvisoContext.tsx';
 
 /** Agrega al carro y muestra el aviso "N × producto agregado(s)". */
 export function useAgregarAlCarrito() {

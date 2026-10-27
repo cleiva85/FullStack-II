@@ -10,7 +10,7 @@
 | **babel-plugin-istanbul + karma-coverage** | Instrumentan el código y generan el reporte de cobertura (HTML, resumen de texto y lcov). |
 | **React Testing Library** | Renderiza componentes y los consulta como lo haría un usuario (por texto, rol o etiqueta). |
 
-Archivos clave: `frontend/karma.conf.cjs`, `frontend/src/test/entorno.js` (preparación del navegador) y `frontend/src/test/utilidades.jsx` (render con router y contextos, respuestas falsas de `fetch`).
+Archivos clave: `frontend/karma.conf.cjs`, `frontend/src/test/entorno.js` (preparación del navegador) y `frontend/src/test/utilidades.tsx` (render con router y contextos, respuestas falsas de `fetch`).
 
 Comando: `npm test` dentro de `frontend`. Los archivos de prueba y utilidades se excluyen del cálculo de cobertura.
 

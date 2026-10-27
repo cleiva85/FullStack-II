@@ -2,7 +2,7 @@
    Configuración de pruebas unitarias: Karma + Jasmine
    - Karma abre Chrome (sin ventana) y ejecuta las pruebas.
    - Jasmine es el framework con el que se escriben (describe / it / expect).
-   - Webpack + Babel compilan el JSX de React para el navegador.
+  - Webpack + Babel compilan el TSX de React para el navegador.
    - babel-plugin-istanbul instrumenta el código para medir cobertura.
    Uso:  npm test          → corre una vez y genera coverage/
          npm run test:watch → queda escuchando cambios
@@ -19,10 +19,10 @@ module.exports = function (config) {
     ],
     files: [
       'src/test/entorno.js',
-      { pattern: 'src/__tests__/**/*.spec.jsx', watched: false },
+      { pattern: 'src/__tests__/**/*.spec.tsx', watched: false },
     ],
     preprocessors: {
-      'src/__tests__/**/*.spec.jsx': ['webpack'],
+      'src/__tests__/**/*.spec.tsx': ['webpack'],
     },
     webpack: {
       mode: 'development',
@@ -30,7 +30,7 @@ module.exports = function (config) {
       module: {
         rules: [
           {
-            test: /\.(js|jsx)$/,
+            test: /\.(js|jsx|ts|tsx)$/,
             exclude: /node_modules/,
             resolve: { fullySpecified: false },
             use: {
@@ -48,7 +48,7 @@ module.exports = function (config) {
           },
         ],
       },
-      resolve: { extensions: ['.js', '.jsx'] },
+      resolve: { extensions: ['.js', '.tsx', '.ts', '.tsx'] },
       stats: 'errors-only',
     },
     reporters: ['progress', 'kjhtml', 'coverage'],
