@@ -59,8 +59,6 @@ npm run test:watch  # deja Karma abierto y vuelve a correr al guardar
 |---|---|---|
 | Productos, categorías, usuarios del panel, órdenes | `frontend/src/data/db.js` (localStorage) | La pauta pide un archivo JS que actúe como base de datos con CRUD. Los componentes se suscriben y se actualizan en tiempo real. |
 | Carro de compras | `CarritoContext` (localStorage) | Se mantiene al recargar la página. |
-| Cuentas, contraseñas y sesión | Backend Node (`backend/data/usuarios.json`) | Las contraseñas se guardan cifradas (scrypt) y la sesión usa un token firmado. |
-| Pedidos de clientes con sesión | Backend Node (`backend/data/pedidos.json`) | Se ven en "Mis pedidos". |
 
 Para volver a los datos iniciales del catálogo: Panel admin → Perfil → **Restablecer datos**.
 
