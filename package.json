@@ -1,0 +1,12 @@
+{
+  "name": "proyecto-comercio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "C & D Distribuidora Mayorista — frontend React (carpeta frontend) + API Node (carpeta backend)",
+  "scripts": {
+    "instalar": "npm install --prefix frontend",
+    "backend": "npm start --prefix backend",
+    "dev": "npm run dev --prefix frontend",
+    "test": "npm test --prefix backend && npm test --prefix frontend"
+  }
+}
